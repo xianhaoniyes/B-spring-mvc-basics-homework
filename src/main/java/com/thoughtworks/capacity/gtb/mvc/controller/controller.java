@@ -38,7 +38,7 @@ public class controller {
     @ResponseStatus(HttpStatus.OK)
     public User login(@RequestParam("username")  @NotNull(message = "username illegal")
                           @Size(min=5,max = 12,message = "username illegal") String username,
-                      @RequestParam("password") String password)
+                      @RequestParam("password") @Pattern(regexp = "^[0-9a-zA-Z_]{5,12}",message = "password illegal") String password)
                         throws MismatchException {
         return userService.login(username,password);
     }

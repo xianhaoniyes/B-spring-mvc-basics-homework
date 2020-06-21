@@ -17,7 +17,7 @@ public class MyExceptionHandler {
 
     @ExceptionHandler(UserExistException.class)
     public ResponseEntity<ErrorResult> handleUserExistException(UserExistException ex){
-        ErrorResult errorResult= new ErrorResult(HttpStatus.BAD_REQUEST,ex.getMessage());
+        ErrorResult errorResult= new ErrorResult(400,ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
 
@@ -25,20 +25,20 @@ public class MyExceptionHandler {
     public ResponseEntity<ErrorResult> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
         FieldError error = ex.getBindingResult().getFieldError();
         String errorMessage = error!=null? error.getDefaultMessage():"Something went wrong";
-        ErrorResult errorResult =new ErrorResult(HttpStatus.BAD_REQUEST,errorMessage);
+        ErrorResult errorResult =new ErrorResult(400,errorMessage);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
 
 
     @ExceptionHandler(MismatchException.class)
     public ResponseEntity<ErrorResult> handleUserExistException(MismatchException ex){
-        ErrorResult errorResult= new ErrorResult(HttpStatus.BAD_REQUEST,ex.getMessage());
+        ErrorResult errorResult= new ErrorResult(400,ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ErrorResult> handleConstraintViolationException(ConstraintViolationException ex){
-        ErrorResult errorResult= new ErrorResult(HttpStatus.BAD_REQUEST,ex.getMessage());
+        ErrorResult errorResult= new ErrorResult(400,ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
 
